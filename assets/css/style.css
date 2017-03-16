@@ -1,0 +1,13 @@
+.jumbotron {
+	background-image: url("../images/TrainMtn.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: left bottom;
+	text-align: center;
+	text-shadow: 1px 1px #0000ff;
+	color: #FFF;
+}
+
+body {
+	background-color: #A6C3EB;
+}
