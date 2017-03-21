@@ -25,12 +25,13 @@
 
   	// prevent form from trying to submit
     event.preventDefault();
-
+    // pull values from HTML input form
     name = $("#trainName").val().trim();
     dest = $("#trainDest").val().trim();
     tTime = $("#trainTime").val().trim();
     freq = $("#trainFreq").val().trim();
 
+    // write new train info at end of firebase
     database.ref().push({
         name: name,
         dest: dest,
@@ -38,12 +39,17 @@
         freq: freq
     });
 
+    // clear data boxes on HTML input form
+    $("#trainName").val("");
+    $("#trainDest").val("");
+    $("#trainTime").val("");
+    $("#trainFreq").val("");
+
   });
 
-  // Initial and when the database changes...
+  // On first run and when the database changes...
   database.ref().on("child_added", function(snapshot) {
-  	console.log(snapshot.val());
-  	var sv = snapshot.val();
+  	// save firebase record's values
   	var name = snapshot.val().name;
   	var dest = snapshot.val().dest;
   	var freq = snapshot.val().freq;
@@ -71,13 +77,15 @@
 
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+    var nextHhmm = moment(nextTrain).format("HH:mm");
+    console.log("ARRIVAL TIME: " + nextHhmm);
 
-  	$("#trainInfo").append("<tr class='table-row'><td> " + name +
+//  	$("#trainInfo").append("<tr class='table-row'><td> " + name +
+    $("#trainInfo").append("<tr><td> " + name +
         " </td><td> " + dest + " </td><td> " + freq +    
-        " </td><td> " + nextTrain + 
+        " </td><td> " + nextHhmm + 
         " </td><td> " + tMinutesTillTrain + "</td></tr>");
-        
+     
   });
 
   // Functions
