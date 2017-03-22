@@ -12,7 +12,7 @@
   // ========================================================================
   // Get a reference to the database service
   var database = firebase.database();
-
+  // database object 
   var name = "";
   var dest = "";
   var tTime = "";
@@ -80,7 +80,7 @@
     var nextHhmm = moment(nextTrain).format("HH:mm");
     console.log("ARRIVAL TIME: " + nextHhmm);
 
-//  	$("#trainInfo").append("<tr class='table-row'><td> " + name +
+    // append train schedule table row to HTML
     $("#trainInfo").append("<tr><td> " + name +
         " </td><td> " + dest + " </td><td> " + freq +    
         " </td><td> " + nextHhmm + 
